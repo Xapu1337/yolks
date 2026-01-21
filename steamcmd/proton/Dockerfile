@@ -52,7 +52,6 @@ RUN         dbus-uuidgen --ensure=/etc/machine-id
 RUN         rm /var/lib/dbus/machine-id
 RUN         dbus-uuidgen --ensure
 
-
 # Set up Winetricks
 RUN	        wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/pelican-eggs/winetricks/master/src/winetricks \
             && chmod +x /usr/sbin/winetricks
