@@ -2,13 +2,13 @@ FROM cm2network/steamcmd:root
 
 RUN apt-get update && apt-get install -y gosu cron wget python3 libfreetype6
 
-ARG APPID=2394010
+ARG SRCDS_APPID=2394010
 
 ENV STEAM_HOME="/home/container" \
     PALSERVER_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServer-Win64-Shipping-Cmd.exe" \
     STEAM_USER="anonymous" \
     STEAM_PATH="/home/container/.steam/steam" \
-    APPID=$APPID \
+    SRCDS_APPID=$SRCDS_APPID \
     WINEDLLOVERRIDES="xinput1_3.dll=n,b"
 
 RUN adduser --disabled-password --home /home/container container
@@ -38,7 +38,7 @@ RUN dpkg --add-architecture i386 && \
 
 # Export Proton paths
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
-ENV STEAM_COMPAT_DATA_PATH=${STEAM_PATH}/steamapps/compatdata/${APPID}
+ENV STEAM_COMPAT_DATA_PATH=${STEAM_PATH}/steamapps/compatdata/${SRCDS_APPID}
 ENV PROTON=${STEAM_PATH}/compatibilitytools.d/${PROTON_VERSION}/proton
 
 ENV DISPLAY :1
