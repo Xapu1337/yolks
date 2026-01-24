@@ -1,4 +1,4 @@
-FROM cm2network/steamcmd:root
+FROM marcsbrooks/docker-steamcmd-wine
 
 RUN apt-get update && apt-get install -y gosu cron wget python3 libfreetype6
 
