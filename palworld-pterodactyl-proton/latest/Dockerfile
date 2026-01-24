@@ -28,13 +28,7 @@ RUN apt-get update -y && \
         locales-all \
         wget
 
-# Install Wine and xorg-x11-server-Xvfb
-RUN dpkg --add-architecture i386 && \
-    mkdir -pm755 /etc/apt/keyrings && \
-    wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && \
-    wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bullseye/winehq-bullseye.sources && \
-    apt-get update -y && \
-    apt-get install -y --install-recommends winehq-staging
+RUN dpkg --add-architecture i386
 
 # Export Proton paths
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
@@ -55,5 +49,5 @@ ENV PROTON_LOG=1
 
 WORKDIR /home/container
 
-COPY --chmod=755 entrypoint.sh /entrypoint.sh
+COPY --chmod=755 entrypoint.sh ../entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
